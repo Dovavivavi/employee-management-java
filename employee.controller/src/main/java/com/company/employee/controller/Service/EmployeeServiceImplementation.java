@@ -2,16 +2,25 @@ package com.company.employee.controller.Service;
 
 import com.company.employee.controller.DAO.EmployeeRepository;
 import com.company.employee.controller.Entity.Employees;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
+@Service
 public class EmployeeServiceImplementation implements EmployeeService {
 
     private EmployeeRepository repository;
 
+    @Autowired
     public EmployeeServiceImplementation(EmployeeRepository employeeRepo) {
         repository = employeeRepo;
+    }
+
+    @Override
+    public List<Employees> findAll() {
+        return repository.findAllByCustomQuery();
     }
 
     @Override
@@ -27,5 +36,15 @@ public class EmployeeServiceImplementation implements EmployeeService {
         }
 
         return foundEmployee;
+    }
+
+    @Override
+    public void save(Employees employeeToSave) {
+        repository.save(employeeToSave);
+    }
+
+    @Override
+    public void deleteById(int idToDelete) {
+        repository.deleteById(idToDelete);
     }
 }
