@@ -13,4 +13,6 @@ public interface EmployeeService {
     void save(Employees employeeToSave);
 
     void deleteById(int idToDelete);
+
+    String tables();
 }

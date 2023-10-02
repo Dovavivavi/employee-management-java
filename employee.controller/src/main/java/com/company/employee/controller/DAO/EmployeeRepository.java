@@ -15,4 +15,8 @@ public interface EmployeeRepository extends JpaRepository<Employees, Integer> {
 
     @Query(value = "SELECT * FROM Employees ORDER BY last_name ASC;", nativeQuery = true)
     public List<Employees> findAllByCustomQuery();
+
+    // checking TABLES
+    @Query(value = "SHOW TABLES", nativeQuery = true)
+    public String tables();
 }

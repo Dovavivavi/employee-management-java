@@ -47,4 +47,11 @@ public class EmployeeServiceImplementation implements EmployeeService {
     public void deleteById(int idToDelete) {
         repository.deleteById(idToDelete);
     }
+
+    @Override
+    public String tables() {
+        String tables = repository.tables();
+        System.out.println(tables);
+        return tables;
+    }
 }

@@ -27,10 +27,10 @@ public class EmployeeController {
 
         employeeModel.addAttribute("employees", employeesToList);
 
-        return "employees/list-employees";
+        return "employees/employees-list";
     }
 
-    @GetMapping("showAddForm")
+    @GetMapping("/showAddForm")
     public String showAddForm(Model employeeModel) {
         Employees employee = new Employees();
 
@@ -48,5 +48,11 @@ public class EmployeeController {
     public String delete(@RequestParam("employeeId") int deleteEmployeeId) {
         employeeService.deleteById(deleteEmployeeId);
         return "redirect:/employees/list";
+    }
+
+    @GetMapping("/tables")
+    public String showTables() {
+        employeeService.tables();
+        return "";
     }
 }

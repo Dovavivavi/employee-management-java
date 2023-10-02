@@ -20,7 +20,7 @@
     <hr>
 
     <!-- add a button -->
-    <a th:href="@{/employees/showFormForAdd}"
+    <a th:href="@{/employees/showAddForm}"
        class="btn btn-primary btn-sm mb-3">
         + Employee ...
     </a>
@@ -37,8 +37,8 @@
         <tbody>
         <tr th:each="tempEmployee : ${employees}">
 
-            <td th:text="${tempEmployee.firstName}" />
-            <td th:text="${tempEmployee.lastName}" />
+            <td th:text="${tempEmployee.first_name}" />
+            <td th:text="${tempEmployee.last_name}" />
             <td th:text="${tempEmployee.email}" />
             <!-- add update button link-->
             <td>
