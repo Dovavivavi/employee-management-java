@@ -4,6 +4,8 @@ import com.company.employee.controller.Entity.Employees;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.List;
 
 public interface EmployeeRepository extends JpaRepository<Employees, Integer> {
@@ -18,5 +20,5 @@ public interface EmployeeRepository extends JpaRepository<Employees, Integer> {
 
     // checking TABLES
     @Query(value = "SHOW TABLES", nativeQuery = true)
-    public String tables();
+    public Array tables();
 }

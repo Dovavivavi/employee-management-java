@@ -28,4 +28,6 @@ INSERT INTO Roles(user_id, role) VALUES ('test', 'MANAGER');
 SELECT * FROM Admins;
 SELECT * FROM Roles;
 
+SHOW TABLES;
+
 DESC Employees;

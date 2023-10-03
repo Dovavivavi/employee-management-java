@@ -2,6 +2,7 @@ package com.company.employee.controller.Service;
 
 import com.company.employee.controller.Entity.Employees;
 
+import java.lang.reflect.Array;
 import java.util.List;
 
 public interface EmployeeService {
@@ -14,5 +15,5 @@ public interface EmployeeService {
 
     void deleteById(int idToDelete);
 
-    String tables();
+    Array tables();
 }

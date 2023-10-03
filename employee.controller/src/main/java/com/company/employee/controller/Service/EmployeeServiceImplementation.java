@@ -5,6 +5,7 @@ import com.company.employee.controller.Entity.Employees;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.lang.reflect.Array;
 import java.util.List;
 import java.util.Optional;
 
@@ -46,11 +47,14 @@ public class EmployeeServiceImplementation implements EmployeeService {
     @Override
     public void deleteById(int idToDelete) {
         repository.deleteById(idToDelete);
+
+        //logging out delete
+        System.out.println("employee was deleted with the id: " + idToDelete);
     }
 
     @Override
-    public String tables() {
-        String tables = repository.tables();
+    public Array tables() {
+        Array tables = repository.tables();
         System.out.println(tables);
         return tables;
     }

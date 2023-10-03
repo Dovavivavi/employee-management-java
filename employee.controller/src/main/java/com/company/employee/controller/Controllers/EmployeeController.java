@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.lang.reflect.Array;
 import java.util.List;
 
 @Controller
@@ -38,6 +39,15 @@ public class EmployeeController {
         return "employees/employee-form";
     }
 
+    @GetMapping("/showUpdateForm")
+    public String showUpdateForm(@RequestParam("employeeId") int updateEmployeeId, Model  employeeModel) {
+        Employees retrievedEmployee = employeeService.findById(updateEmployeeId);
+
+        employeeModel.addAttribute("employee", retrievedEmployee);
+
+        return "employees/employee-form";
+    }
+
     @PostMapping("/save")
     public String saveEmployee(@ModelAttribute("employee") Employees employeeSavedToDb) {
         employeeService.save(employeeSavedToDb);
@@ -49,10 +59,11 @@ public class EmployeeController {
         employeeService.deleteById(deleteEmployeeId);
         return "redirect:/employees/list";
     }
-
+    /*
     @GetMapping("/tables")
-    public String showTables() {
+    void Array showTables() {
         employeeService.tables();
-        return "";
+
     }
+     */
 }

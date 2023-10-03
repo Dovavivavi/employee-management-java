@@ -19,6 +19,7 @@ public class EmployeeErrorController implements ErrorController {
             Integer statusCodeInString = Integer.valueOf(statusCode.toString());
 
             if(statusCodeInString == HttpStatus.NOT_FOUND.value()) {
+                System.out.println();
                 return "error/error-404";
             } else if(statusCodeInString == HttpStatus.INTERNAL_SERVER_ERROR.value()) {
                 return "error/error-500";
@@ -27,4 +28,5 @@ public class EmployeeErrorController implements ErrorController {
 
         return "error";
     }
+
 }
