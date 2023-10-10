@@ -1,5 +1,6 @@
 <!DOCTYPE HTML>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+                xmlns:sec="http://thymeleaf.org/extras/spring-security">
 
 <head>
     <!-- Required meta tags -->
@@ -20,10 +21,12 @@
     <hr>
 
     <!-- add a button -->
-    <a th:href="@{/employees/showAddForm}"
-       class="btn btn-primary btn-sm mb-3">
-        + Employee ...
-    </a>
+    <div sec:authorize="hasAnyRole('MANAGER', 'ADMIN')">
+        <a th:href="@{/employees/showAddForm}"
+           class="btn btn-primary btn-sm mb-3">
+            + Employee ...
+        </a>
+    </div>
     <table class="table table-bordered table-striped">
         <thead class="table-dark">
         <tr>
@@ -43,16 +46,20 @@
             <!-- add update button link-->
             <td>
                 <!-- append to url-->
-                <a th:href="@{/employees/showUpdateForm(employeeId=${tempEmployee.id})}"
-                   class="btn btn-info btn-sm">
-                    Update
-                </a>
+                <div sec:authorize="hasAnyRole('MANAGER', 'ADMIN')">
+                    <a th:href="@{/employees/showUpdateForm(employeeId=${tempEmployee.id})}"
+                       class="btn btn-info btn-sm">
+                        Update
+                    </a>
+                </div>
                 <!-- Add "delete" buttons -->
-                <a th:href="@{/employees/delete(employeeId=${tempEmployee.id})}"
-                   class="btn btn-danger btn-sm"
-                   onclick="if (!(confirm('Are you sure you want to delete?'))) return false">
-                    Delete
-                </a>
+                <div sec:authorize="hasRole('ADMIN')">
+                    <a th:href="@{/employees/delete(employeeId=${tempEmployee.id})}"
+                       class="btn btn-danger btn-sm"
+                       onclick="if (!(confirm('Are you sure you want to delete?'))) return false">
+                        Delete
+                    </a>
+                </div>
             </td>
 
         </tr>

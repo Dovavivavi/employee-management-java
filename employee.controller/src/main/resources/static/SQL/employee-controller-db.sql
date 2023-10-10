@@ -16,18 +16,39 @@ CREATE TABLE Admins (
 )ENGINE=InnoDB;
 
 CREATE TABLE Roles (
-	user_id VARCHAR(20) NOT NULL PRIMARY KEY,
+	user_id VARCHAR(20) NOT NULL,
 	`role` VARCHAR(40) NOT NULL,
+	UNIQUE KEY `admin_pairs` (`user_id`, `role`),
 	CONSTRAINT `admin_roles` FOREIGN KEY (user_id) REFERENCES Admins (user_id)
 )ENGINE=InnoDB;
 
 -- dev queries
-INSERT INTO Admins(user_id, password, active) VALUES ('test', 'test123', 1);
-INSERT INTO Roles(user_id, role) VALUES ('test', 'MANAGER'); 
-
 SELECT * FROM Admins;
 SELECT * FROM Roles;
 
 SHOW TABLES;
 
 DESC Employees;
+
+-- admins and roles
+
+-- sample queries
+INSERT INTO Admins(user_id, password, active) VALUES ('', '', 1);
+INSERT INTO Roles(user_id, role) VALUES ('', ''); 
+
+-- default password is: 'test123' encrypted by Bcrypt
+INSERT INTO Admins(user_id, password, active) VALUES ('tom', '{bcrypt}$2a$12$O9/7PUg84E7/e0r32Ieyru4qUZ7Fm62cb2QHP.3j7H51jAqGpmZj6', 1);
+INSERT INTO Admins(user_id, password, active) VALUES ('greg', '{bcrypt}$2a$12$O9/7PUg84E7/e0r32Ieyru4qUZ7Fm62cb2QHP.3j7H51jAqGpmZj6', 1);
+INSERT INTO Admins(user_id, password, active) VALUES ('lulu', '{bcrypt}$2a$12$O9/7PUg84E7/e0r32Ieyru4qUZ7Fm62cb2QHP.3j7H51jAqGpmZj6', 1);
+
+INSERT INTO Roles(user_id, role) VALUES ('tom', 'ROLE_EMPLOYEE');
+
+INSERT INTO Roles(user_id, role) VALUES ('greg', 'ROLE_EMPLOYEE');
+INSERT INTO Roles(user_id, role) VALUES ('greg', 'ROLE_MANAGER');
+
+INSERT INTO Roles(user_id, role) VALUES ('lulu', 'ROLE_EMPLOYEE');
+INSERT INTO Roles(user_id, role) VALUES ('lulu', 'ROLE_MANAGER');
+INSERT INTO Roles(user_id, role) VALUES ('lulu', 'ROLE_ADMIN');
+
+SELECT * FROM  Admins;
+SELECT * FROM Roles;
