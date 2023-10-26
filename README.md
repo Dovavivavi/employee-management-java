@@ -1,4 +1,4 @@
 # employee-management-java
-employee managment webapp created in Java Spring Boot using:
->Hibernate
->Spring Security
+
+Employee manager web mwc created in Spring Boot
+>using: Hibernate, Thymeleaf and MariaDB
